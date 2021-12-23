@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 239e95acbb007364e8890b35c497b457, type: 3}
+  m_Name: Melee
+  m_EditorClassIdentifier: 
+  Name: BaseballBat
+  Description: Ol'Reliable
+  Icon: {fileID: 21300000, guid: b4b01dcbad1764d40ab5266730722ff4, type: 3}
+  prefab: {fileID: 5463274246364375071, guid: f87c9fd247da6e24a851d86ffebd3be8, type: 3}
+  magSize: 0
+  magCount: 0
+  range: 20
+  weaponType: 0
+  weaponClass: 2

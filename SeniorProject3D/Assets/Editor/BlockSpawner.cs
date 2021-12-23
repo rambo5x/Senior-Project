@@ -1,0 +1,55 @@
+using UnityEditor;
+using UnityEngine;
+
+public class BlockSpawner : EditorWindow
+{
+    string objectBaseName = "";
+    int objectID = 1;
+    GameObject objectToSpawn;
+    float objectScale;
+    float spawnRadius = 5f;
+
+    [MenuItem("Tools/BlockSpawner")]
+    public static void ShowWindow()
+    {
+        GetWindow(typeof(BlockSpawner));      //GetWindow is a method inherited from the EditorWindow class
+    }
+
+    private void OnGUI()
+    {
+        GUILayout.Label("Spawn New Block", EditorStyles.boldLabel);
+        
+        objectBaseName = EditorGUILayout.TextField("Name block", objectBaseName);
+        objectID = EditorGUILayout.IntField("Block ID", objectID);
+        objectScale = EditorGUILayout.Slider("Block Scale", objectScale, 1.0f, 5f);
+        spawnRadius = EditorGUILayout.FloatField("Spawn Radius", spawnRadius);
+        objectToSpawn = EditorGUILayout.ObjectField("Prefab to Spawn", objectToSpawn, typeof(GameObject), false) as GameObject;
+
+        if (GUILayout.Button("Spawn Object"))
+        {
+            SpawnObject();
+        }
+    }
+
+    private void SpawnObject()
+    {
+        if(objectToSpawn == null)
+        {
+            Debug.LogError("Error: Please assign a block to be spawned.");
+            return;
+        }
+        if (objectBaseName == string.Empty) {
+            Debug.LogError("Error: Please enter a name for the block.");
+            return;
+        }
+
+        Vector2 spawnCircle = Random.insideUnitCircle * spawnRadius;
+        Vector3 spawnPos = new Vector3(spawnCircle.x, 0f, spawnCircle.y);
+
+        GameObject newObject = Instantiate(objectToSpawn, spawnPos, Quaternion.identity);
+        newObject.name = objectBaseName + objectID;
+        newObject.transform.localScale = Vector3.one * objectScale;
+
+        objectID++;
+    }
+}
